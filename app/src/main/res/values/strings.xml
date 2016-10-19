@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Contracheque</string>
-    <string name="edit_message">Digite o seu salário bruto</string>
+    <string name="edit_salario">Digite o seu salário bruto</string>
     <string name="button_send">Enviar</string>
 </resources>
