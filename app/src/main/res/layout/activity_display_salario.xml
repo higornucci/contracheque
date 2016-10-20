@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".DisplaySalarioActivity">
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/piechart_salario"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"/>
 </RelativeLayout>
