@@ -13,12 +13,20 @@ public class Real {
         return new Real(valor.multiply(BigDecimal.valueOf(multiplicador)));
     }
 
+    public boolean menorOuIgualQue(BigDecimal valorASerComparado) {
+        return valor.compareTo(valorASerComparado) == -1;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Real real = (Real) o;
-        return valor.equals(real.valor);
+        return valor.equals(real.getValor());
     }
 
     @Override
