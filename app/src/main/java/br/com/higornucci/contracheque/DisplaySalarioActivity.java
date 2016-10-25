@@ -28,11 +28,12 @@ public class DisplaySalarioActivity extends AppCompatActivity {
         Double salarioBruto = vencimentoRepository.buscarSalarioBruto();
 
         PieEntry pieEntry = new PieEntry(Float.parseFloat(salarioBruto.toString()), "Salário Líquido");
-        PieDataSet pieDataSet = new PieDataSet(Arrays.asList(pieEntry, new PieEntry(585f, "INSS")), "Salário");
+        PieDataSet pieDataSet = new PieDataSet(Arrays.asList(pieEntry, new PieEntry(585f, "INSS"), new PieEntry(678f, "IRRF")), "Salário");
         pieDataSet.resetColors();
         pieDataSet.setValueTextSize(16);
-        pieDataSet.addColor(Color.rgb(52, 152, 219));
-        pieDataSet.addColor(Color.rgb(255, 87, 51));
+        pieDataSet.addColor(Color.rgb(2, 136, 209));
+        pieDataSet.addColor(Color.rgb(255, 82, 82));
+        pieDataSet.addColor(Color.rgb(139, 195, 74));
 
         PieData pieData = new PieData(pieDataSet);
 
