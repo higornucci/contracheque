@@ -54,4 +54,37 @@ public class INSSTest {
 
         assertThat(valorDescontado, is(equalTo(valorDescontadoEsperado)));
     }
+
+    @Test
+    public void deve_calcular_o_valor_do_inss_com_o_valor_piso_da_aliquota_maxima_descontado_do_salario() throws Exception {
+        Real valorDoSalarioBruto = new Real(new BigDecimal(2594.93));
+        Real valorDescontadoEsperado = new Real(new BigDecimal(285.4423));
+
+        CalculadorDeDesconto calculadorDeDesconto = new CalculadorDeINSS(valorDoSalarioBruto);
+        Real valorDescontado = calculadorDeDesconto.calcular();
+
+        assertThat(valorDescontado, is(equalTo(valorDescontadoEsperado)));
+    }
+
+    @Test
+    public void deve_calcular_o_valor_do_inss_com_o_valor_teto_da_aliquota_maxima_descontado_do_salario() throws Exception {
+        Real valorDoSalarioBruto = new Real(new BigDecimal(5189.82));
+        Real valorDescontadoEsperado = new Real(new BigDecimal(570.8802));
+
+        CalculadorDeDesconto calculadorDeDesconto = new CalculadorDeINSS(valorDoSalarioBruto);
+        Real valorDescontado = calculadorDeDesconto.calcular();
+
+        assertThat(valorDescontado, is(equalTo(valorDescontadoEsperado)));
+    }
+
+    @Test
+    public void deve_calcular_o_valor_do_inss_quando_o_valor_do_salario_ultrapassa_o_teto() throws Exception {
+        Real valorDoSalarioBruto = new Real(new BigDecimal(6190));
+        Real valorDescontadoEsperado = new Real(new BigDecimal(570.8802));
+
+        CalculadorDeDesconto calculadorDeDesconto = new CalculadorDeINSS(valorDoSalarioBruto);
+        Real valorDescontado = calculadorDeDesconto.calcular();
+
+        assertThat(valorDescontado, is(equalTo(valorDescontadoEsperado)));
+    }
 }

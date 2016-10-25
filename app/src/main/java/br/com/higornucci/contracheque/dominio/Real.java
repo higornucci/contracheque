@@ -10,7 +10,7 @@ public class Real {
     }
 
     public Real multiplicarPor(double multiplicador) {
-        return new Real(valor.multiply(BigDecimal.valueOf(multiplicador)));
+        return new Real(valor.multiply(new BigDecimal(multiplicador)));
     }
 
     public boolean menorOuIgualQue(BigDecimal valorASerComparado) {
@@ -19,6 +19,10 @@ public class Real {
 
     public BigDecimal getValor() {
         return valor;
+    }
+
+    public boolean entre(BigDecimal valorInferiorLimite, BigDecimal valorSuperiorLimite) {
+        return valor.compareTo(valorInferiorLimite.setScale(2, BigDecimal.ROUND_HALF_EVEN)) >= 0 && valor.compareTo(valorSuperiorLimite.setScale(2, BigDecimal.ROUND_HALF_EVEN)) <= 0;
     }
 
     @Override

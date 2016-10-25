@@ -18,7 +18,11 @@ public class CalculadorDeINSS implements CalculadorDeDesconto {
     public Real calcular() {
         if(valorDoSalarioBruto.menorOuIgualQue(new BigDecimal(1556.94))) {
             return valorDoSalarioBruto.multiplicarPor(ALIQUOTA_MINIMA);
+        } else if(valorDoSalarioBruto.entre(new BigDecimal(1556.95), new BigDecimal(2594.92))) {
+            return valorDoSalarioBruto.multiplicarPor(ALIQUOTA_INTERMEDIARIA);
+        } else if(valorDoSalarioBruto.entre(new BigDecimal(2594.93), new BigDecimal(5189.82))) {
+            return valorDoSalarioBruto.multiplicarPor(ALIQUOTA_MAXIMA);
         }
-        return valorDoSalarioBruto.multiplicarPor(ALIQUOTA_INTERMEDIARIA);
+        return new Real(new BigDecimal(5189.82)).multiplicarPor(ALIQUOTA_MAXIMA);
     }
 }
