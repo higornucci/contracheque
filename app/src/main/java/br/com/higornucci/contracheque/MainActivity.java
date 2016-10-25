@@ -11,7 +11,6 @@ import com.github.mikephil.charting.charts.PieChart;
 import br.com.higornucci.contracheque.repositorio.vencimento.VencimentoRepository;
 
 public class MainActivity extends AppCompatActivity {
-    public final static String EXTRA_MESSAGE = "br.com.higornucci.contracheque.EXTRA_MESSAGE";
     private Double aDouble;
 
     @Override
@@ -23,19 +22,22 @@ public class MainActivity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.edit_salario);
         aDouble = vencimentoRepository.buscarSalarioBruto();
         editText.setText(aDouble.toString());
+        if(aDouble > 0d) {
+            Intent intent = new Intent(this, DisplaySalarioActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void enviarSalario(View view) {
-        Intent intent = new Intent(this, DisplaySalarioActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_salario);
         String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
 
         if(aDouble == 0d) {
             VencimentoRepository vencimentoRepository = new VencimentoRepository(this);
             vencimentoRepository.salvar(Double.valueOf(message));
         }
 
+        Intent intent = new Intent(this, DisplaySalarioActivity.class);
         startActivity(intent);
     }
 }
