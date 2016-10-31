@@ -13,8 +13,8 @@ import com.github.mikephil.charting.data.PieEntry;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-import br.com.higornucci.contracheque.dominio.CalculadorDeINSS;
-import br.com.higornucci.contracheque.dominio.Real;
+import br.com.higornucci.contracheque.dominio.desconto.inss.CalculadorDeINSS;
+import br.com.higornucci.contracheque.dominio.real.Real;
 import br.com.higornucci.contracheque.repositorio.vencimento.VencimentoRepository;
 
 public class DisplaySalarioActivity extends AppCompatActivity {

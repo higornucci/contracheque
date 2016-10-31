@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
+import br.com.higornucci.contracheque.dominio.desconto.CalculadorDeDesconto;
+import br.com.higornucci.contracheque.dominio.desconto.inss.CalculadorDeINSS;
+import br.com.higornucci.contracheque.dominio.real.Real;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

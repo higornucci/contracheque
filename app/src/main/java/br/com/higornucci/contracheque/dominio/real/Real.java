@@ -1,4 +1,4 @@
-package br.com.higornucci.contracheque.dominio;
+package br.com.higornucci.contracheque.dominio.real;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;

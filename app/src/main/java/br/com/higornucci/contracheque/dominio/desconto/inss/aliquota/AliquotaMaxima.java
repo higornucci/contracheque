@@ -1,17 +1,17 @@
-package br.com.higornucci.contracheque.dominio.aliquota;
+package br.com.higornucci.contracheque.dominio.desconto.inss.aliquota;
 
 import java.math.BigDecimal;
 
-import br.com.higornucci.contracheque.dominio.Real;
+import br.com.higornucci.contracheque.dominio.real.Real;
 
-public class AliquotaMaxima implements Aliquota {
+public class AliquotaMaxima implements AliquotaINSS {
     private static final double ALIQUOTA_MAXIMA = 0.11;
     private static final BigDecimal PISO_ALIQUOTA = new BigDecimal(2594.93);
     private static final BigDecimal TETO_ALIQUOTA = new BigDecimal(5189.82);
-    private Aliquota proximo;
+    private AliquotaINSS proximo;
 
     @Override
-    public void setProximo(Aliquota proximo) {
+    public void setProximo(AliquotaINSS proximo) {
         this.proximo = proximo;
     }
 
