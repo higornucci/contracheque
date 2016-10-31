@@ -31,6 +31,11 @@ public class Real {
         return new Real(valor.subtract(descontoINSS.getValor()));
     }
 
+    public String formatado() {
+        Locale ptBR = new Locale("pt", "BR");
+        return NumberFormat.getCurrencyInstance(ptBR).format(valor).toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,10 +47,5 @@ public class Real {
     @Override
     public int hashCode() {
         return valor.hashCode();
-    }
-
-    public String formatado() {
-        Locale ptBR = new Locale("pt", "BR");
-        return NumberFormat.getCurrencyInstance(ptBR).format(valor).toString();
     }
 }
