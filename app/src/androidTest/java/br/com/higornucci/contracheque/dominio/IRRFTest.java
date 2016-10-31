@@ -1,5 +1,6 @@
 package br.com.higornucci.contracheque.dominio;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -15,8 +16,30 @@ import static org.junit.Assert.assertThat;
 public class IRRFTest {
 
     @Test
-    public void deve_calcular_o_valor_do_irrf_com_aliquota_minima_descontado_do_salario() throws Exception {
+    public void deve_calcular_o_valor_do_irrf_sem_desconto_do_salario() throws Exception {
         Real valorDoSalarioBruto = new Real(new BigDecimal(1500));
+        Real valorDescontadoEsperado = new Real(BigDecimal.ZERO);
+
+        CalculadorDeDesconto calculadorDeDesconto = new CalculadorDeIRRF(valorDoSalarioBruto);
+        Real valorDescontado = calculadorDeDesconto.calcular();
+
+        assertThat(valorDescontado, is(equalTo(valorDescontadoEsperado)));
+    }
+
+    @Test
+    public void deve_calcular_o_valor_do_irrf_sem_desconto_para_teto_do_salario() throws Exception {
+        Real valorDoSalarioBruto = new Real(new BigDecimal(1903.98));
+        Real valorDescontadoEsperado = new Real(BigDecimal.ZERO);
+
+        CalculadorDeDesconto calculadorDeDesconto = new CalculadorDeIRRF(valorDoSalarioBruto);
+        Real valorDescontado = calculadorDeDesconto.calcular();
+
+        assertThat(valorDescontado, is(equalTo(valorDescontadoEsperado)));
+    }
+
+    @Test @Ignore
+    public void deve_calcular_o_valor_do_irrf_para_aliquota_minima_a_partir_do_salario_bruto() throws Exception {
+        Real valorDoSalarioBruto = new Real(new BigDecimal(1903.99));
         Real valorDescontadoEsperado = new Real(BigDecimal.ZERO);
 
         CalculadorDeDesconto calculadorDeDesconto = new CalculadorDeIRRF(valorDoSalarioBruto);
