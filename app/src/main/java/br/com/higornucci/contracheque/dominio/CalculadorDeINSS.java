@@ -1,7 +1,5 @@
 package br.com.higornucci.contracheque.dominio;
 
-import java.math.BigDecimal;
-
 import br.com.higornucci.contracheque.dominio.aliquota.GerenciadorDeAliquotas;
 
 public class CalculadorDeINSS implements CalculadorDeDesconto {

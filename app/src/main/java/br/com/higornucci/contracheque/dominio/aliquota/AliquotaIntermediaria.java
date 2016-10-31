@@ -6,8 +6,8 @@ import br.com.higornucci.contracheque.dominio.Real;
 
 public class AliquotaIntermediaria implements Aliquota {
     private static final double ALIQUOTA_INTERMEDIARIA = 0.09;
-    public static final BigDecimal PISO_ALIQUOTA = new BigDecimal(1556.95);
-    public static final BigDecimal TETO_ALIQUOTA = new BigDecimal(2594.92);
+    private static final BigDecimal PISO_ALIQUOTA = new BigDecimal(1556.95);
+    private static final BigDecimal TETO_ALIQUOTA = new BigDecimal(2594.92);
     private Aliquota proximo;
 
     @Override
