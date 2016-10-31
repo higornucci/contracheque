@@ -35,7 +35,7 @@ public class DisplaySalarioActivity extends AppCompatActivity {
         PieEntry inss = new PieEntry(descontoINSS.getValor().floatValue(), "INSS");
         PieEntry irrf = new PieEntry(descontoIRRF.getValor().floatValue(), "IRRF");
         PieEntry salarioLiquido = new PieEntry(valorSalarioBruto.menos(descontoINSS).menos(descontoIRRF).getValor().floatValue(), "Salário Líquido");
-        PieDataSet pieDataSet = new PieDataSet(Arrays.asList(salarioLiquido, inss, irrf), "Salário " + valorSalarioBruto.formatado());
+        PieDataSet pieDataSet = new PieDataSet(Arrays.asList(salarioLiquido, inss, irrf), "Salário");
         pieDataSet.resetColors();
         pieDataSet.setValueTextSize(16);
         pieDataSet.addColor(Color.rgb(2, 136, 209));
@@ -46,9 +46,9 @@ public class DisplaySalarioActivity extends AppCompatActivity {
 
         PieChart pieChart = (PieChart) findViewById(R.id.piechart_salario);
         pieChart.setData(pieData);
-        pieChart.setCenterText("Salário");
+        pieChart.setCenterText(valorSalarioBruto.formatado());
         pieChart.setCenterTextColor(Color.BLACK);
-        pieChart.setCenterTextSize(24);
+        pieChart.setCenterTextSize(22);
         pieChart.setHoleRadius(40);
         pieChart.setTransparentCircleRadius(45);
         pieChart.getLegend().setEnabled(false);
