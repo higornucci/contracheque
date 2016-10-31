@@ -4,16 +4,17 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
+import br.com.higornucci.contracheque.dominio.CalculadorDeINSS;
+import br.com.higornucci.contracheque.dominio.Real;
 import br.com.higornucci.contracheque.repositorio.vencimento.VencimentoRepository;
 
 public class DisplaySalarioActivity extends AppCompatActivity {
@@ -27,8 +28,14 @@ public class DisplaySalarioActivity extends AppCompatActivity {
         VencimentoRepository vencimentoRepository = new VencimentoRepository(this);
         Double salarioBruto = vencimentoRepository.buscarSalarioBruto();
 
-        PieEntry pieEntry = new PieEntry(Float.parseFloat(salarioBruto.toString()), "Salário Líquido");
-        PieDataSet pieDataSet = new PieDataSet(Arrays.asList(pieEntry, new PieEntry(585f, "INSS"), new PieEntry(678f, "IRRF")), "Salário");
+        Real valorSalarioBruto = new Real(new BigDecimal(salarioBruto));
+
+        Real descontoINSS = new CalculadorDeINSS(valorSalarioBruto).calcular();
+        Real descontoIRRF = new Real(new BigDecimal(675.9f));
+        PieEntry inss = new PieEntry(descontoINSS.getValor().floatValue(), "INSS");
+        PieEntry irrf = new PieEntry(descontoIRRF.getValor().floatValue(), "IRRF");
+        PieEntry salarioLiquido = new PieEntry(valorSalarioBruto.menos(descontoINSS).menos(descontoIRRF).getValor().floatValue(), "Salário Líquido");
+        PieDataSet pieDataSet = new PieDataSet(Arrays.asList(salarioLiquido, inss, irrf), "Salário " + valorSalarioBruto.formatado());
         pieDataSet.resetColors();
         pieDataSet.setValueTextSize(16);
         pieDataSet.addColor(Color.rgb(2, 136, 209));

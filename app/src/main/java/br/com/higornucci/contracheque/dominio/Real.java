@@ -1,6 +1,8 @@
 package br.com.higornucci.contracheque.dominio;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Real {
     private BigDecimal valor;
@@ -25,6 +27,10 @@ public class Real {
         return valor.compareTo(valorInferiorLimite.setScale(2, BigDecimal.ROUND_HALF_EVEN)) >= 0 && valor.compareTo(valorSuperiorLimite.setScale(2, BigDecimal.ROUND_HALF_EVEN)) <= 0;
     }
 
+    public Real menos(Real descontoINSS) {
+        return new Real(valor.subtract(descontoINSS.getValor()));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -36,5 +42,10 @@ public class Real {
     @Override
     public int hashCode() {
         return valor.hashCode();
+    }
+
+    public String formatado() {
+        Locale ptBR = new Locale("pt", "BR");
+        return NumberFormat.getCurrencyInstance(ptBR).format(valor).toString();
     }
 }
