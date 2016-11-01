@@ -58,4 +58,26 @@ public class IRRFTest {
 
         assertThat(valorDescontado, is(equalTo(valorDescontadoEsperado)));
     }
+
+    @Test
+    public void deve_calcular_o_valor_do_irrf_para_piso_da_aliquota_intermediaria_a_partir_do_salario_bruto() throws Exception {
+        Real valorDoSalarioBruto = new Real(new BigDecimal(2826.66));
+        Real valorDescontadoEsperado = new Real(new BigDecimal(424));
+
+        CalculadorDeDesconto calculadorDeDesconto = new CalculadorDeIRRF(valorDoSalarioBruto);
+        Real valorDescontado = calculadorDeDesconto.calcular();
+
+        assertThat(valorDescontado, is(equalTo(valorDescontadoEsperado)));
+    }
+
+    @Test
+    public void deve_calcular_o_valor_do_irrf_para_teto_da_aliquota_intermediaria_a_partir_do_salario_bruto() throws Exception {
+        Real valorDoSalarioBruto = new Real(new BigDecimal(3751.05));
+        Real valorDescontadoEsperado = new Real(new BigDecimal(562.66));
+
+        CalculadorDeDesconto calculadorDeDesconto = new CalculadorDeIRRF(valorDoSalarioBruto);
+        Real valorDescontado = calculadorDeDesconto.calcular();
+
+        assertThat(valorDescontado, is(equalTo(valorDescontadoEsperado)));
+    }
 }

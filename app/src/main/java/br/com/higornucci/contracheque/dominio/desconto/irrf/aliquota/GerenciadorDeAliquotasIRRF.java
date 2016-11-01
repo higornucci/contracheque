@@ -9,8 +9,10 @@ public class GerenciadorDeAliquotasIRRF {
     public GerenciadorDeAliquotasIRRF() {
         AliquotaIRRF aliquotaZero = new AliquotaZeroIRRF();
         AliquotaIRRF aliquotaMinima = new AliquotaMinimaIRRF();
+        AliquotaIRRF aliquotaIntermediaria = new AliquotaIntermediariaIRRF();
 
         aliquotaZero.setProximo(aliquotaMinima);
+        aliquotaMinima.setProximo(aliquotaIntermediaria);
 
         this.primeiro = aliquotaZero;
     }
