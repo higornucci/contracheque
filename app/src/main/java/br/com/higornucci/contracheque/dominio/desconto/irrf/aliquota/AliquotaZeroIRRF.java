@@ -13,11 +13,11 @@ public class AliquotaZeroIRRF implements AliquotaIRRF {
     }
 
     @Override
-    public Real calcular(Real valorDoSalarioBruto) {
-        if(valorDoSalarioBruto.menorOuIgualQue(new BigDecimal(1903.98))) {
+    public Real calcular(Real valorDoSalarioBrutoMenosINSS) {
+        if(valorDoSalarioBrutoMenosINSS.menorOuIgualQue(new BigDecimal(1903.98))) {
             return new Real(BigDecimal.ZERO);
         } else {
-            return proximo.calcular(valorDoSalarioBruto);
+            return proximo.calcular(valorDoSalarioBrutoMenosINSS);
         }
     }
 }

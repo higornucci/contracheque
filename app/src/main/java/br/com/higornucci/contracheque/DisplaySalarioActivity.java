@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 import br.com.higornucci.contracheque.dominio.desconto.inss.CalculadorDeINSS;
+import br.com.higornucci.contracheque.dominio.desconto.irrf.CalculadorDeIRRF;
 import br.com.higornucci.contracheque.dominio.real.Real;
 import br.com.higornucci.contracheque.repositorio.vencimento.VencimentoRepository;
 
@@ -31,7 +32,7 @@ public class DisplaySalarioActivity extends AppCompatActivity {
         Real valorSalarioBruto = new Real(new BigDecimal(salarioBruto));
 
         Real descontoINSS = new CalculadorDeINSS(valorSalarioBruto).calcular();
-        Real descontoIRRF = new Real(new BigDecimal(675.9f));
+        Real descontoIRRF = new CalculadorDeIRRF(valorSalarioBruto.menos(descontoINSS)).calcular();
         PieEntry inss = new PieEntry(descontoINSS.getValor().floatValue(), "INSS");
         PieEntry irrf = new PieEntry(descontoIRRF.getValor().floatValue(), "IRRF");
         PieEntry salarioLiquido = new PieEntry(valorSalarioBruto.menos(descontoINSS).menos(descontoIRRF).getValor().floatValue(), "Salário Líquido");

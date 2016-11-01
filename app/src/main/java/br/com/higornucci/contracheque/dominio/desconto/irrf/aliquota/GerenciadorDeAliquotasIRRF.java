@@ -10,14 +10,18 @@ public class GerenciadorDeAliquotasIRRF {
         AliquotaIRRF aliquotaZero = new AliquotaZeroIRRF();
         AliquotaIRRF aliquotaMinima = new AliquotaMinimaIRRF();
         AliquotaIRRF aliquotaIntermediaria = new AliquotaIntermediariaIRRF();
+        AliquotaIRRF aliquotaMaxima = new AliquotaMaximaIRRF();
+        AliquotaIRRF aliquotaAcimaDoTeto = new AliquotaAcimaDoTetoIRRF();
 
         aliquotaZero.setProximo(aliquotaMinima);
         aliquotaMinima.setProximo(aliquotaIntermediaria);
+        aliquotaIntermediaria.setProximo(aliquotaMaxima);
+        aliquotaMaxima.setProximo(aliquotaAcimaDoTeto);
 
         this.primeiro = aliquotaZero;
     }
 
-    public Real calcular(Real valorDoSalarioBruto) {
-        return primeiro.calcular(valorDoSalarioBruto);
+    public Real calcular(Real valorDoSalarioBrutoMenosINSS) {
+        return primeiro.calcular(valorDoSalarioBrutoMenosINSS);
     }
 }
