@@ -1,6 +1,5 @@
 package br.com.higornucci.contracheque.dominio.desconto.irrf.aliquota;
 
-import br.com.higornucci.contracheque.dominio.desconto.inss.aliquota.AliquotaMinima;
 import br.com.higornucci.contracheque.dominio.real.Real;
 
 public class GerenciadorDeAliquotasIRRF {
@@ -8,7 +7,11 @@ public class GerenciadorDeAliquotasIRRF {
     private AliquotaIRRF primeiro;
 
     public GerenciadorDeAliquotasIRRF() {
-        AliquotaIRRF aliquotaZero = new AliquotaZero();
+        AliquotaIRRF aliquotaZero = new AliquotaZeroIRRF();
+        AliquotaIRRF aliquotaMinima = new AliquotaMinimaIRRF();
+
+        aliquotaZero.setProximo(aliquotaMinima);
+
         this.primeiro = aliquotaZero;
     }
 

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import br.com.higornucci.contracheque.dominio.real.Real;
 
-public class AliquotaZero implements AliquotaIRRF {
+public class AliquotaZeroIRRF implements AliquotaIRRF {
     private AliquotaIRRF proximo;
 
     @Override
@@ -14,6 +14,10 @@ public class AliquotaZero implements AliquotaIRRF {
 
     @Override
     public Real calcular(Real valorDoSalarioBruto) {
-        return new Real(BigDecimal.ZERO);
+        if(valorDoSalarioBruto.menorOuIgualQue(new BigDecimal(1903.98))) {
+            return new Real(BigDecimal.ZERO);
+        } else {
+            return proximo.calcular(valorDoSalarioBruto);
+        }
     }
 }

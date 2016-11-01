@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import br.com.higornucci.contracheque.dominio.real.Real;
 
-public class AliquotaMinima implements AliquotaINSS {
+public class AliquotaMinimaINSS implements AliquotaINSS {
     private static final double ALIQUOTA_MINIMA = 0.08;
     private static final BigDecimal TETO_DA_ALIQUOTA = new BigDecimal(1556.94);
     private AliquotaINSS proximo;

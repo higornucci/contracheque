@@ -7,9 +7,9 @@ public class GerenciadorDeAliquotasINSS {
     private AliquotaINSS primeiro;
 
     public GerenciadorDeAliquotasINSS() {
-        AliquotaINSS minima = new AliquotaMinima();
-        AliquotaINSS intermediaria = new AliquotaIntermediaria();
-        AliquotaINSS maxima = new AliquotaMaxima();
+        AliquotaINSS minima = new AliquotaMinimaINSS();
+        AliquotaINSS intermediaria = new AliquotaIntermediariaINSS();
+        AliquotaINSS maxima = new AliquotaMaximaINSS();
 
         minima.setProximo(intermediaria);
         intermediaria.setProximo(maxima);
