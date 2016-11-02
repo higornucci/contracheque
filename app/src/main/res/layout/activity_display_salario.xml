@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_display_message"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
+    android:orientation="horizontal"
     tools:context=".DisplaySalarioActivity">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart_salario"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"/>
-</RelativeLayout>
+        android:layout_height="wrap_content">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow android:orientation="horizontal">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart_salario"
+                    android:layout_width="380dp"
+                    android:layout_height="380dp" />
+            </TableRow>
+
+            <TableRow android:orientation="horizontal">
+                <EditText android:id="@+id/edit_salario"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_salario"
+                    android:textColorHint="@color/colorGray"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_edit" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+</LinearLayout>
