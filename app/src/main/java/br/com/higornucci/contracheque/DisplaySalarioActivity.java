@@ -25,17 +25,17 @@ public class DisplaySalarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_salario);
 
-        Intent intent = getIntent();
         VencimentoRepository vencimentoRepository = new VencimentoRepository(this);
         Double salarioBruto = vencimentoRepository.buscarSalarioBruto();
 
         Real valorSalarioBruto = new Real(new BigDecimal(salarioBruto));
-
         Real descontoINSS = new CalculadorDeINSS(valorSalarioBruto).calcular();
         Real descontoIRRF = new CalculadorDeIRRF(valorSalarioBruto.menos(descontoINSS)).calcular();
+        Real valorSalarioLiquido = valorSalarioBruto.menos(descontoINSS).menos(descontoIRRF);
+
         PieEntry inss = new PieEntry(descontoINSS.getValor().floatValue(), "INSS");
         PieEntry irrf = new PieEntry(descontoIRRF.getValor().floatValue(), "IRRF");
-        PieEntry salarioLiquido = new PieEntry(valorSalarioBruto.menos(descontoINSS).menos(descontoIRRF).getValor().floatValue(), "Salário Líquido");
+        PieEntry salarioLiquido = new PieEntry(valorSalarioLiquido.getValor().floatValue(), "Salário Líquido");
         PieDataSet pieDataSet = new PieDataSet(Arrays.asList(salarioLiquido, inss, irrf), "Salário");
         pieDataSet.resetColors();
         pieDataSet.setValueTextSize(16);
